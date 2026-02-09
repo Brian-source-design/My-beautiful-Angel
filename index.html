@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Queen ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            color: #d32f2f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(rgba(255, 192, 203, 0.6), rgba(255, 192, 203, 0.6)), 
+                        url('https://images.unsplash.com/photo-1591160674255-fc809b1ed7f1?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .heart {
+            position: absolute;
+            top: -10%;
+            color: #ff4081;
+            font-size: 20px;
+            user-select: none;
+            z-index: -1;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh); }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 85%;
+            max-width: 400px;
+            border: 3px solid #ff80ab;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 { font-size: 1.8rem; margin-bottom: 10px; line-height: 1.2; }
+        p { font-size: 1.1rem; color: #555; }
+        
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .yes-btn { background-color: #ff4081; color: white; }
+        .no-btn { background-color: #fce4ec; color: #ff4081; border: 1px solid #ff4081; }
+        
+        /* Promise Buttons - Removed color names from text */
+        .promise-pink { background-color: #ff80ab; color: white; }
+        .promise-blue { background-color: #4fc3f7; color: white; }
+        
+        .back-btn { background-color: #eeeeee; color: #757575; font-size: 0.8rem; padding: 8px 15px; margin-top: 20px; }
+        
+        button:hover { transform: scale(1.05); }
+
+        .hidden { display: none; }
+        .basket { font-size: 80px; cursor: pointer; display: block; margin: 15px 0; animation: bounce 2s infinite; }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .music-box { margin-top: 15px; border-radius: 12px; overflow: hidden; border: 2px solid #ff80ab; }
+    </style>
+</head>
+<body>
+
+    <div id="page1" class="card">
+        <h1>Hey My Beautiful Lovely Queen... ❤️</h1>
+        <p>Will you be my Valentine?</p>
+        <button class="yes-btn" onclick="goToPage(2)">Yes!</button>
+        <button class="no-btn" onclick="goToPage('trap')">No</button>
+    </div>
+
+    <div id="page2" class="card hidden">
+        <h1>Promise me...</h1>
+        <p style="font-size: 1.4rem; font-weight: bold;">To never let us go? 💍</p>
+        <button class="promise-pink" onclick="goToPage(3)">I Promise</button>
+        <button class="promise-blue" onclick="goToPage(3)">I Promise</button>
+        <br>
+        <button class="back-btn" onclick="goToPage(1)">← Back</button>
+    </div>
+
+    <div id="page-trap" class="card hidden">
+        <h1>Wait, that's not right! 😉</h1>
+        <p>Try again, My Queen:</p>
+        <button class="yes-btn" onclick="goToPage(2)">Yes!</button>
+        <button class="yes-btn" onclick="goToPage(2)">Absolutely Yes! ❤️</button>
+        <br>
+        <button class="back-btn" onclick="goToPage(1)">← Go Back</button>
+    </div>
+
+    <div id="page3" class="card hidden">
+        <div style="font-size: 30px;">🌸🐶🌸</div>
+        <h1>My Beautiful Lovely Queen,</h1>
+        <p>You are the most beautiful thing ever.</p>
+        <span class="basket" onclick="goToPage(4)">🎁</span>
+        <p><strong>Tap your gift basket to open!</strong></p>
+        <button class="back-btn" onclick="goToPage(2)">← Back</button>
+    </div>
+
+    <div id="page4" class="card hidden">
+        <h1>I LOVE YOU ❤️</h1>
+        <div style="font-size: 30px;">💖✨🤟💍</div>
+        <p>You are the answer to my prayers...</p>
+        
+        <div class="music-box">
+            <iframe width="100%" height="200" 
+                src="https://www.youtube.com/embed/DXvMT_mVhcI" 
+                title="K-Ci & JoJo - All My Life" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <p style="margin-top:10px; font-weight: bold; color: #ff4081;">Tap the play button for our song! 🎵</p>
+        <p style="font-style: italic; font-size: 0.9rem;">"I will never find another lover more precious than you..."</p>
+        <button class="back-btn" onclick="goToPage(3)">← Back to Gift</button>
+    </div>
+
+    <script>
+        function goToPage(pageNum) {
+            document.querySelectorAll('.card').forEach(card => card.classList.add('hidden'));
+            const targetId = pageNum === 'trap' ? 'page-trap' : 'page' + pageNum;
+            document.getElementById(targetId).classList.remove('hidden');
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
